@@ -46,8 +46,8 @@ $$
 
 where $\sigma$ is the median pairwise distance among the clean fitting examples. The empirical squared MMD compares average similarity within each group with average similarity across groups:
 
-\frac{2}{n^2}\sum_{i,j}k(u_i,v_j).  
-]
+$$\frac{2}{n^2}\sum_{i,j}k(u_i,v_j)$$.  
+
 
 The implementation computes $D=w^\top K w$, where $K$ is the pooled kernel matrix and $w$ assigns weight $+1/n$ to each reference image and $-1/n$ to each target image.
 
@@ -57,21 +57,21 @@ Liu et al. [5] learned deep kernels to increase the power of two-sample tests. W
 
 On separate development images, let $d$ be the unit vector pointing from the mean clean feature to the mean severity-3 fog feature. Let $s$ be the pooled standard deviation of the development features projected onto $d$. The candidate kernel is
 
-k_0(u,v)  
+$$k_0(u,v)  
 \left[  
 0.05+  
 0.95\exp!\left(  
 -\frac{a[d^\top(u-v)]^2}{2s^2}  
 \right)  
-\right].  
+\right]$$.  
 ]
 
 When $a=0$, the expression reduces to the fixed Gaussian kernel. Positive values reduce the similarity assigned to image pairs that differ along the learned direction. We select $a$ from ${0,0.125,0.5,2,8}$.
 
 For each candidate, define
 
-k(u_i,u_j)+k(v_i,v_j)-k(u_i,v_j)-k(v_i,u_j),  
-\qquad i\ne j,  
+$$k(u_i,u_j)+k(v_i,v_j)-k(u_i,v_j)-k(v_i,u_j),  
+\qquad i\ne j$$,  
 ]
 
 and let $r_i$ be the mean of the off-diagonal entries in row $i$. The selected weight maximizes
